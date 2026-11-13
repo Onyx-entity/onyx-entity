@@ -4,9 +4,9 @@ body {
   font-family: Georgia, "Times New Roman", serif;
   color: #1f2933;
   background-color: #e9eef2;
-  background-image: url("images/background.jpg");
+  background-image: url("images/background.svg");
   background-size: cover;
-  background-position: center;
+  background-position: center bottom;
   background-attachment: fixed;
 }
 
