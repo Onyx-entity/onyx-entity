@@ -25,7 +25,7 @@ a {
 
 @font-face {
   font-family: 'Henny Penny';
-  src: url('images/HennyPenny-Regular.ttf') format('truetype');
+  src: url('images/fonts/HennyPenny-Regular.ttf') format('truetype');
   font-display: swap;
 }
 
