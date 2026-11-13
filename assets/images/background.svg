@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 288">
+  <defs>
+    <linearGradient id="horizon" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b3d91" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#1e90ff"/>
+      <stop offset="1" stop-color="#0b3d91" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7ff0ff"/>
+      <stop offset="1" stop-color="#0a5fb0"/>
+    </linearGradient>
+    <pattern id="ripple" width="24" height="10" patternUnits="userSpaceOnUse">
+      <ellipse cx="6" cy="4" rx="5" ry="1.5" fill="#e6fbff" opacity="0.7"/>
+      <ellipse cx="18" cy="8" rx="4" ry="1.2" fill="#ffffff" opacity="0.5"/>
+    </pattern>
+  </defs>
+
+  <rect width="512" height="288" fill="#000"/>
+
+  <g fill="#ffffff">
+    <circle cx="25" cy="42" r="1"/>
+    <circle cx="122" cy="103" r="1.4"/>
+    <circle cx="323" cy="44" r="1"/>
+    <circle cx="486" cy="40" r="1.2"/>
+    <circle cx="420" cy="104" r="1.4"/>
+    <circle cx="34" cy="156" r="1"/>
+    <circle cx="258" cy="157" r="1.2"/>
+    <circle cx="285" cy="156" r="1.4"/>
+    <circle cx="141" cy="188" r="1"/>
+    <circle cx="241" cy="190" r="1.2"/>
+    <circle cx="301" cy="190" r="1"/>
+    <circle cx="401" cy="187" r="1.4"/>
+    <circle cx="508" cy="156" r="1"/>
+    <circle cx="68" cy="82" r="0.7"/>
+    <circle cx="190" cy="25" r="0.7"/>
+    <circle cx="360" cy="136" r="0.8"/>
+    <circle cx="90" cy="20" r="0.6"/>
+    <circle cx="210" cy="70" r="0.7"/>
+    <circle cx="455" cy="170" r="0.8"/>
+    <circle cx="50" cy="200" r="0.6"/>
+    <circle cx="330" cy="75" r="0.6"/>
+    <circle cx="170" cy="130" r="0.7"/>
+    <circle cx="470" cy="80" r="0.6"/>
+  </g>
+
+  <rect x="0" y="222" width="512" height="14" fill="url(#horizon)"/>
+  <rect x="0" y="236" width="512" height="52" fill="url(#water)"/>
+  <rect x="0" y="236" width="512" height="52" fill="url(#ripple)"/>
+</svg>
