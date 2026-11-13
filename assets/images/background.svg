@@ -79,7 +79,7 @@
 
   <rect x="0" y="260" width="512" height="28" fill="url(#glow)"/>
 
-  <g fill="url(#flameBack)" transform="translate(0 288) scale(1 0.7) translate(0 -288)">
+  <g fill="url(#flameBack)" transform="translate(0 288) scale(1 0.5) translate(0 -288)">
     <path d="M8,288 Q4,240 20,190 Q36,240 32,288 Z"/>
     <path d="M60,288 Q54,225 75,170 Q96,225 90,288 Z"/>
     <path d="M112,288 Q106,235 128,200 Q150,235 144,288 Z"/>
@@ -91,7 +91,7 @@
     <path d="M480,288 Q474,235 496,200 Q512,240 506,288 Z"/>
   </g>
 
-  <g fill="url(#flameFront)" transform="translate(0 288) scale(1 0.7) translate(0 -288)">
+  <g fill="url(#flameFront)" transform="translate(0 288) scale(1 0.5) translate(0 -288)">
     <path d="M30,288 Q28,250 45,225 Q62,250 58,288 Z"/>
     <path d="M84,288 Q80,255 100,235 Q118,255 114,288 Z"/>
     <path d="M140,288 Q136,250 160,225 Q182,250 178,288 Z"/>
