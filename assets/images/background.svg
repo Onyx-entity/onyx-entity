@@ -1,49 +1,104 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 288">
   <defs>
-    <linearGradient id="horizon" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#0b3d91" stop-opacity="0"/>
-      <stop offset="0.5" stop-color="#1e90ff"/>
-      <stop offset="1" stop-color="#0b3d91" stop-opacity="0"/>
+    <path id="sp" d="M0,-4 Q0,0 4,0 Q0,0 0,4 Q0,0 -4,0 Q0,0 0,-4Z"/>
+    <linearGradient id="flameBack" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c1121f"/>
+      <stop offset="0.6" stop-color="#ff7b00"/>
+      <stop offset="1" stop-color="#7fd8ff"/>
     </linearGradient>
-    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#7ff0ff"/>
-      <stop offset="1" stop-color="#0a5fb0"/>
+    <linearGradient id="flameFront" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff9500"/>
+      <stop offset="0.6" stop-color="#ffd166"/>
+      <stop offset="1" stop-color="#e8fbff"/>
     </linearGradient>
-    <pattern id="ripple" width="24" height="10" patternUnits="userSpaceOnUse">
-      <ellipse cx="6" cy="4" rx="5" ry="1.5" fill="#e6fbff" opacity="0.7"/>
-      <ellipse cx="18" cy="8" rx="4" ry="1.2" fill="#ffffff" opacity="0.5"/>
-    </pattern>
+    <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff7b00" stop-opacity="0"/>
+      <stop offset="1" stop-color="#ffb347" stop-opacity="0.6"/>
+    </linearGradient>
   </defs>
 
   <rect width="512" height="288" fill="#000"/>
 
   <g fill="#ffffff">
-    <circle cx="25" cy="42" r="1"/>
-    <circle cx="122" cy="103" r="1.4"/>
-    <circle cx="323" cy="44" r="1"/>
-    <circle cx="486" cy="40" r="1.2"/>
-    <circle cx="420" cy="104" r="1.4"/>
-    <circle cx="34" cy="156" r="1"/>
-    <circle cx="258" cy="157" r="1.2"/>
-    <circle cx="285" cy="156" r="1.4"/>
-    <circle cx="141" cy="188" r="1"/>
-    <circle cx="241" cy="190" r="1.2"/>
-    <circle cx="301" cy="190" r="1"/>
-    <circle cx="401" cy="187" r="1.4"/>
-    <circle cx="508" cy="156" r="1"/>
-    <circle cx="68" cy="82" r="0.7"/>
-    <circle cx="190" cy="25" r="0.7"/>
-    <circle cx="360" cy="136" r="0.8"/>
-    <circle cx="90" cy="20" r="0.6"/>
-    <circle cx="210" cy="70" r="0.7"/>
-    <circle cx="455" cy="170" r="0.8"/>
-    <circle cx="50" cy="200" r="0.6"/>
-    <circle cx="330" cy="75" r="0.6"/>
-    <circle cx="170" cy="130" r="0.7"/>
-    <circle cx="470" cy="80" r="0.6"/>
+    <use href="#sp" transform="translate(12 18) scale(1.2)"/>
+    <use href="#sp" transform="translate(40 10) scale(0.8)"/>
+    <use href="#sp" transform="translate(68 34) scale(0.6)"/>
+    <use href="#sp" transform="translate(25 60) scale(1)"/>
+    <use href="#sp" transform="translate(8 95) scale(1.3)"/>
+    <use href="#sp" transform="translate(44 120) scale(0.7)"/>
+    <use href="#sp" transform="translate(18 150) scale(1)"/>
+    <use href="#sp" transform="translate(6 185) scale(0.8)"/>
+    <use href="#sp" transform="translate(36 205) scale(0.6)"/>
+    <use href="#sp" transform="translate(60 176) scale(0.5)"/>
+    <use href="#sp" transform="translate(90 8) scale(0.7)"/>
+    <use href="#sp" transform="translate(128 22) scale(0.5)"/>
+    <use href="#sp" transform="translate(165 6) scale(1)"/>
+    <use href="#sp" transform="translate(200 30) scale(0.6)"/>
+    <use href="#sp" transform="translate(235 12) scale(0.5)"/>
+    <use href="#sp" transform="translate(290 8) scale(1.1)"/>
+    <use href="#sp" transform="translate(330 24) scale(0.6)"/>
+    <use href="#sp" transform="translate(365 6) scale(0.8)"/>
+    <use href="#sp" transform="translate(400 18) scale(0.5)"/>
+    <use href="#sp" transform="translate(438 8) scale(1)"/>
+    <use href="#sp" transform="translate(470 28) scale(0.7)"/>
+    <use href="#sp" transform="translate(495 12) scale(1.2)"/>
+    <use href="#sp" transform="translate(506 50) scale(0.8)"/>
+    <use href="#sp" transform="translate(470 70) scale(0.5)"/>
+    <use href="#sp" transform="translate(500 96) scale(1)"/>
+    <use href="#sp" transform="translate(480 125) scale(0.6)"/>
+    <use href="#sp" transform="translate(508 150) scale(0.9)"/>
+    <use href="#sp" transform="translate(466 166) scale(0.6)"/>
+    <use href="#sp" transform="translate(490 200) scale(0.7)"/>
+    <use href="#sp" transform="translate(122 103) scale(1.2)"/>
+    <use href="#sp" transform="translate(420 104) scale(1.2)"/>
+    <use href="#sp" transform="translate(323 58) scale(0.8)"/>
+    <use href="#sp" transform="translate(258 157) scale(0.7)"/>
+    <use href="#sp" transform="translate(285 150) scale(0.9)"/>
+    <use href="#sp" transform="translate(141 180) scale(0.6)"/>
+    <use href="#sp" transform="translate(241 176) scale(0.5)"/>
+    <use href="#sp" transform="translate(301 172) scale(0.6)"/>
+    <use href="#sp" transform="translate(401 160) scale(0.9)"/>
+    <use href="#sp" transform="translate(210 70) scale(0.6)"/>
+    <use href="#sp" transform="translate(170 130) scale(0.5)"/>
+    <use href="#sp" transform="translate(360 136) scale(0.5)"/>
+    <use href="#sp" transform="translate(68 82) scale(0.5)"/>
+    <use href="#sp" transform="translate(330 95) scale(0.4)"/>
+    <use href="#sp" transform="translate(255 95) scale(0.5)"/>
+    <use href="#sp" transform="translate(300 120) scale(0.4)"/>
+    <use href="#sp" transform="translate(90 140) scale(0.4)"/>
+    <use href="#sp" transform="translate(225 128) scale(0.5)"/>
+    <use href="#sp" transform="translate(380 60) scale(0.5)"/>
+    <use href="#sp" transform="translate(150 60) scale(0.4)"/>
+    <use href="#sp" transform="translate(440 50) scale(0.5)"/>
+    <use href="#sp" transform="translate(195 160) scale(0.4)"/>
+    <use href="#sp" transform="translate(350 180) scale(0.5)"/>
+    <use href="#sp" transform="translate(110 160) scale(0.4)"/>
+    <use href="#sp" transform="translate(60 30) scale(0.4)"/>
+    <use href="#sp" transform="translate(280 40) scale(0.4)"/>
   </g>
 
-  <rect x="0" y="222" width="512" height="14" fill="url(#horizon)"/>
-  <rect x="0" y="236" width="512" height="52" fill="url(#water)"/>
-  <rect x="0" y="236" width="512" height="52" fill="url(#ripple)"/>
+  <rect x="0" y="260" width="512" height="28" fill="url(#glow)"/>
+
+  <g fill="url(#flameBack)">
+    <path d="M8,288 Q4,240 20,190 Q36,240 32,288 Z"/>
+    <path d="M60,288 Q54,225 75,170 Q96,225 90,288 Z"/>
+    <path d="M112,288 Q106,235 128,200 Q150,235 144,288 Z"/>
+    <path d="M170,288 Q162,230 186,180 Q210,230 202,288 Z"/>
+    <path d="M226,288 Q218,215 256,160 Q294,215 286,288 Z"/>
+    <path d="M300,288 Q292,235 316,195 Q340,235 332,288 Z"/>
+    <path d="M360,288 Q352,225 378,175 Q404,225 396,288 Z"/>
+    <path d="M420,288 Q412,240 436,195 Q460,240 452,288 Z"/>
+    <path d="M480,288 Q474,235 496,200 Q512,240 506,288 Z"/>
+  </g>
+
+  <g fill="url(#flameFront)">
+    <path d="M30,288 Q28,250 45,225 Q62,250 58,288 Z"/>
+    <path d="M84,288 Q80,255 100,235 Q118,255 114,288 Z"/>
+    <path d="M140,288 Q136,250 160,225 Q182,250 178,288 Z"/>
+    <path d="M200,288 Q196,258 220,240 Q242,258 236,288 Z"/>
+    <path d="M266,288 Q262,252 288,230 Q312,252 306,288 Z"/>
+    <path d="M328,288 Q324,255 350,236 Q372,255 366,288 Z"/>
+    <path d="M390,288 Q386,250 412,225 Q436,250 430,288 Z"/>
+    <path d="M455,288 Q450,258 476,238 Q496,258 490,288 Z"/>
+  </g>
 </svg>
