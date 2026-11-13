@@ -23,6 +23,12 @@ a {
   color: #1a5f7a;
 }
 
+@font-face {
+  font-family: 'Henny Penny';
+  src: url('images/HennyPenny-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+
 h1 {
-  font-family: 'Luckiest Guy', cursive;
+  font-family: 'Henny Penny', cursive;
 }
