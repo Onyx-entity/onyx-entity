@@ -20,23 +20,84 @@
   </nav>
   
   <main>
-    <section>
-      <h2>Featured Content</h2>
-      <p>Featured videos, articles, creators can be posted here daily/weekly.</p>
+    <section class="featured" aria-labelledby="featured-heading">
+      <h2 id="featured-heading">Featured</h2>
+      <div class="carousel">
+
+        <button class="carousel-btn prev" type="button" aria-label="Previous card">
+          <svg viewBox="0 0 8 8" aria-hidden="true" focusable="false" shape-rendering="crispEdges">
+            <path fill="currentColor" d="M3 0h1v1H3z M2 1h1v1H2z M1 2h1v1H1z M0 3h8v2H0z M1 5h1v1H1z M2 6h1v1H2z M3 7h1v1H3z"/>
+          </svg>
+        </button>
+
+        <ul class="carousel-track">
+
+          <li class="card">
+            <a href="https://www.youtube.com/watch?v=VIDEO_ID">
+              <img src="assets/images/video-thumbnail.jpg" alt="Thumbnail for the video title" loading="lazy">
+              <div class="card-body">
+                <span class="card-type">Video</span>
+                <h3>Video Title</h3>
+                <p>A short description of the video.</p>
+              </div>
+            </a>
+          </li>
+
+          <li class="card">
+            <a href="https://example.com/article">
+              <img src="assets/images/article-image.jpg" alt="Image description for the article" loading="lazy">
+              <div class="card-body">
+                <span class="card-type">Article</span>
+                <h3>Article Title</h3>
+                <p>A short description of the article.</p>
+              </div>
+            </a>
+          </li>
+
+          <li class="card">
+            <a href="blog.html">
+              <img src="assets/images/blog-image.jpg" alt="Image description for the blog post" loading="lazy">
+              <div class="card-body">
+                <span class="card-type">Blog</span>
+                <h3>Blog Post Title</h3>
+                <p>A short description of the blog post.</p>
+              </div>
+            </a>
+          </li>
+
+        </ul>
+
+        <button class="carousel-btn next" type="button" aria-label="Next card">
+          <svg viewBox="0 0 8 8" aria-hidden="true" focusable="false" shape-rendering="crispEdges">
+            <path fill="currentColor" d="M3 0h1v1H3z M2 1h1v1H2z M1 2h1v1H1z M0 3h8v2H0z M1 5h1v1H1z M2 6h1v1H2z M3 7h1v1H3z"/>
+          </svg>
+        </button>
+
+      </div>
     </section>
 
-    <section>
-      <h2>Explore</h2>
-      <ul>
-        <li><a href="blog.html">Blog</a>: updates and writing</li>
-        <li><a href="research.html">Research</a>: summaries of collected sources</li>
-        <li><a href="partners.html">Partners</a>: organizations we work with</li>
-      </ul>
-    </section>
   </main>
 
   <footer>
     <p>Content is licensed under CC BY 4.0 unless otherwise noted.</p>
   </footer>
+  
+  <script>
+  (function () {
+    const track = document.querySelector('.carousel-track');
+    const prevBtn = document.querySelector('.carousel-btn.prev');
+    const nextBtn = document.querySelector('.carousel-btn.next');
+
+    function scrollByCard(direction) {
+      const card = track.querySelector('.card');
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      track.scrollBy({ left: direction * (card.offsetWidth + gap) });
+    }
+
+    prevBtn.addEventListener('click', () => scrollByCard(-1));
+    nextBtn.addEventListener('click', () => scrollByCard(1));
+  })();
+  </script>
+
 </body>
 </html>
