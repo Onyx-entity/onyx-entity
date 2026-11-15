@@ -150,8 +150,8 @@
     <use href="#star" transform="translate(110 160) scale(0.4)"/>
     <use href="#star" transform="translate(60 30) scale(0.4)"/>
     <use href="#star" transform="translate(280 46) scale(0.4)"/>
-    <g class="twinkle" style="transform-origin: 290px 8px; animation-duration: 2.7s; animation-delay: -0.8s;">
-      <use href="#star" transform="translate(290 8) scale(1.1)"/>
+    <g class="twinkle" style="transform-origin: 100px 60px; animation-duration: 2.7s; animation-delay: -0.8s;">
+      <use href="#star" transform="translate(100 60) scale(1.1)"/>
     </g>
     <g class="twinkle" style="transform-origin: 420px 104px; animation-duration: 2.5s; animation-delay: -1.9s;">
       <use href="#star" transform="translate(420 104) scale(1.2)"/>
