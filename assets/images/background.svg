@@ -1,6 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 288">
   <defs>
-    <path id="sp" d="M0,-4 Q0,0 4,0 Q0,0 0,4 Q0,0 -4,0 Q0,0 0,-4Z"/>
+
+    <path id="sp" d="
+      M0,0h1v1h-1z M1,0h1v1h-1z M2,0h1v1h-1z M3,0h1v1h-1z M0,1h1v1h-1z M1,1h1v1h-1z M0,2h1v1h-1z M0,3h1v1h-1z
+      M-1,0h1v1h-1z M-2,0h1v1h-1z M-3,0h1v1h-1z M-4,0h1v1h-1z M-1,1h1v1h-1z M-2,1h1v1h-1z M-1,2h1v1h-1z M-1,3h1v1h-1z
+      M0,-1h1v1h-1z M1,-1h1v1h-1z M2,-1h1v1h-1z M3,-1h1v1h-1z M0,-2h1v1h-1z M1,-2h1v1h-1z M0,-3h1v1h-1z M0,-4h1v1h-1z
+      M-1,-1h1v1h-1z M-2,-1h1v1h-1z M-3,-1h1v1h-1z M-4,-1h1v1h-1z M-1,-2h1v1h-1z M-2,-2h1v1h-1z M-1,-3h1v1h-1z M-1,-4h1v1h-1z"/>
+    <path id="sp-core" d="M-1,-1h2v2h-2z"/>
+    <g id="star">
+      <use href="#sp" transform="scale(2.4)" opacity="0.2"/>
+      <use href="#sp"/>
+      <use href="#sp-core" fill="#ffffff" opacity="0.55"/>
+    </g>
+
     <linearGradient id="flameBack" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#c1121f"/>
       <stop offset="0.6" stop-color="#ff7b00"/>
@@ -15,96 +27,267 @@
       <stop offset="0" stop-color="#ff7b00" stop-opacity="0"/>
       <stop offset="1" stop-color="#ffb347" stop-opacity="0.6"/>
     </linearGradient>
+    <path id="flame-tall" d="M0,0 V-16 H8 V-32 H16 V-48 H24 V-40 H32 V-56 H40 V-24 H48 V0 Z"/>
+    <path id="flame-short" d="M0,0 V-8 H8 V-24 H16 V-40 H24 V-32 H32 V-48 H40 V-16 H48 V0 Z"/>
+    <path id="flame-wisp" d="M0,0 V-16 H8 V-40 H16 V-24 H24 V0 Z"/>
+    
+    <style>
+      .seg {
+        transform-box: view-box;
+      }
+
+      .s1 { transform-origin: 73px 288px; }
+      .s2 { transform-origin: 198px 288px; }
+      .s3 { transform-origin: 321px 288px; }
+      .s4 { transform-origin: 444px 288px; }
+
+      .flame-back .s1 { animation: flicker-back 1.9s ease-in-out infinite; }
+      .flame-back .s2 { animation: flicker-back 1.6s ease-in-out -0.6s infinite; }
+      .flame-back .s3 { animation: flicker-back 2.1s ease-in-out -1.2s infinite; }
+      .flame-back .s4 { animation: flicker-back 1.75s ease-in-out -0.3s infinite; }
+
+      .flame-mid .s1 { animation: flicker-mid 1.2s ease-in-out -0.2s infinite; }
+      .flame-mid .s2 { animation: flicker-mid 1.0s ease-in-out -0.5s infinite; }
+      .flame-mid .s3 { animation: flicker-mid 1.3s ease-in-out -0.9s infinite; }
+      .flame-mid .s4 { animation: flicker-mid 0.95s ease-in-out -0.4s infinite; }
+
+      .flame-front .s1 { animation: flicker-front 0.9s ease-in-out infinite; }
+      .flame-front .s2 { animation: flicker-front 0.7s ease-in-out -0.3s infinite; }
+      .flame-front .s3 { animation: flicker-front 0.85s ease-in-out -0.6s infinite; }
+      .flame-front .s4 { animation: flicker-front 0.75s ease-in-out -0.1s infinite; }
+
+      @keyframes flicker-back {
+        0%, 100% { transform: scale(1, 1); }
+        50% { transform: scale(1.01, 1.04); }
+      }
+
+      @keyframes flicker-mid {
+        0%, 100% { transform: scale(1, 1); }
+        50% { transform: scale(1.02, 1.06); }
+      }
+
+      @keyframes flicker-front {
+        0%, 100% { transform: scale(1, 1); }
+        50% { transform: scale(1.02, 1.08); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .seg, .wisp {
+          animation: none !important;
+        }
+      }
+      .wisp-1 { animation: wisp 8.5s linear -2s infinite; }
+      .wisp-2 { animation: wisp 11s linear -7s infinite; }
+      .wisp-3 { animation: wisp 9.5s linear -4s infinite; }
+      .wisp-4 { animation: wisp 13s linear -10s infinite; }
+
+      .wisp {
+        transform-box: view-box;
+        opacity: 0;
+      }
+
+      @keyframes wisp {
+        0% { opacity: 0; transform: translate(0, 0); }
+        2% { opacity: 0.9; transform: translate(0, 0); }
+        10% { opacity: 0; transform: translate(4px, -36px); }
+        100% { opacity: 0; transform: translate(4px, -36px); }
+      }
+
+      .twinkle {
+        transform-box: view-box;
+        animation: twinkle 2.8s ease-in-out infinite;
+      }
+
+      @keyframes twinkle {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.4); opacity: 0.5; }
+      }
+
+    </style>
   </defs>
 
   <rect width="512" height="288" fill="#000"/>
 
-  <g fill="#ffffff">
-    <use href="#sp" transform="translate(12 18) scale(1.2)"/>
-    <use href="#sp" transform="translate(40 10) scale(0.8)"/>
-    <use href="#sp" transform="translate(68 34) scale(0.6)"/>
-    <use href="#sp" transform="translate(25 60) scale(1)"/>
-    <use href="#sp" transform="translate(8 95) scale(1.3)"/>
-    <use href="#sp" transform="translate(44 120) scale(0.7)"/>
-    <use href="#sp" transform="translate(18 150) scale(1)"/>
-    <use href="#sp" transform="translate(6 185) scale(0.8)"/>
-    <use href="#sp" transform="translate(36 205) scale(0.6)"/>
-    <use href="#sp" transform="translate(60 176) scale(0.5)"/>
-    <use href="#sp" transform="translate(90 8) scale(0.7)"/>
-    <use href="#sp" transform="translate(128 22) scale(0.5)"/>
-    <use href="#sp" transform="translate(165 6) scale(1)"/>
-    <use href="#sp" transform="translate(200 30) scale(0.6)"/>
-    <use href="#sp" transform="translate(235 12) scale(0.5)"/>
-    <use href="#sp" transform="translate(290 8) scale(1.1)"/>
-    <use href="#sp" transform="translate(330 24) scale(0.6)"/>
-    <use href="#sp" transform="translate(365 6) scale(0.8)"/>
-    <use href="#sp" transform="translate(400 18) scale(0.5)"/>
-    <use href="#sp" transform="translate(438 8) scale(1)"/>
-    <use href="#sp" transform="translate(470 28) scale(0.7)"/>
-    <use href="#sp" transform="translate(495 12) scale(1.2)"/>
-    <use href="#sp" transform="translate(506 50) scale(0.8)"/>
-    <use href="#sp" transform="translate(470 70) scale(0.5)"/>
-    <use href="#sp" transform="translate(500 96) scale(1)"/>
-    <use href="#sp" transform="translate(480 125) scale(0.6)"/>
-    <use href="#sp" transform="translate(508 150) scale(0.9)"/>
-    <use href="#sp" transform="translate(466 166) scale(0.6)"/>
-    <use href="#sp" transform="translate(490 200) scale(0.7)"/>
-    <use href="#sp" transform="translate(122 103) scale(1.2)"/>
-    <use href="#sp" transform="translate(420 104) scale(1.2)"/>
-    <use href="#sp" transform="translate(323 58) scale(0.8)"/>
-    <use href="#sp" transform="translate(258 157) scale(0.7)"/>
-    <use href="#sp" transform="translate(285 150) scale(0.9)"/>
-    <use href="#sp" transform="translate(141 180) scale(0.6)"/>
-    <use href="#sp" transform="translate(241 176) scale(0.5)"/>
-    <use href="#sp" transform="translate(301 172) scale(0.6)"/>
-    <use href="#sp" transform="translate(401 160) scale(0.9)"/>
-    <use href="#sp" transform="translate(210 70) scale(0.6)"/>
-    <use href="#sp" transform="translate(170 130) scale(0.5)"/>
-    <use href="#sp" transform="translate(360 136) scale(0.5)"/>
-    <use href="#sp" transform="translate(68 82) scale(0.5)"/>
-    <use href="#sp" transform="translate(330 95) scale(0.4)"/>
-    <use href="#sp" transform="translate(255 95) scale(0.5)"/>
-    <use href="#sp" transform="translate(300 120) scale(0.4)"/>
-    <use href="#sp" transform="translate(90 140) scale(0.4)"/>
-    <use href="#sp" transform="translate(225 128) scale(0.5)"/>
-    <use href="#sp" transform="translate(380 60) scale(0.5)"/>
-    <use href="#sp" transform="translate(150 60) scale(0.4)"/>
-    <use href="#sp" transform="translate(440 50) scale(0.5)"/>
-    <use href="#sp" transform="translate(195 160) scale(0.4)"/>
-    <use href="#sp" transform="translate(350 180) scale(0.5)"/>
-    <use href="#sp" transform="translate(110 160) scale(0.4)"/>
-    <use href="#sp" transform="translate(60 30) scale(0.4)"/>
-    <use href="#sp" transform="translate(280 40) scale(0.4)"/>
+  <g fill="#d6e4ff" shape-rendering="crispEdges">
+    <use href="#star" transform="translate(40 10) scale(0.8)"/>
+    <use href="#star" transform="translate(68 34) scale(0.6)"/>
+    <use href="#star" transform="translate(25 60) scale(1)"/>
+    <use href="#star" transform="translate(44 120) scale(0.7)"/>
+    <use href="#star" transform="translate(18 150) scale(1)"/>
+    <use href="#star" transform="translate(6 185) scale(0.8)"/>
+    <use href="#star" transform="translate(36 205) scale(0.6)"/>
+    <use href="#star" transform="translate(60 176) scale(0.5)"/>
+    <use href="#star" transform="translate(90 8) scale(0.7)"/>
+    <use href="#star" transform="translate(128 22) scale(0.5)"/>
+    <use href="#star" transform="translate(165 6) scale(1)"/>
+    <use href="#star" transform="translate(235 12) scale(0.5)"/>
+    <use href="#star" transform="translate(365 6) scale(0.8)"/>
+    <use href="#star" transform="translate(400 18) scale(0.5)"/>
+    <use href="#star" transform="translate(438 8) scale(1)"/>
+    <use href="#star" transform="translate(470 28) scale(0.7)"/>
+    <use href="#star" transform="translate(506 50) scale(0.8)"/>
+    <use href="#star" transform="translate(470 70) scale(0.5)"/>
+    <use href="#star" transform="translate(500 96) scale(1)"/>
+    <use href="#star" transform="translate(508 150) scale(0.9)"/>
+    <use href="#star" transform="translate(490 200) scale(0.7)"/>
+    <use href="#star" transform="translate(323 58) scale(0.8)"/>
+    <use href="#star" transform="translate(285 150) scale(0.9)"/>
+    <use href="#star" transform="translate(141 180) scale(0.6)"/>
+    <use href="#star" transform="translate(241 176) scale(0.5)"/>
+    <use href="#star" transform="translate(301 172) scale(0.6)"/>
+    <use href="#star" transform="translate(401 160) scale(0.9)"/>
+    <use href="#star" transform="translate(210 70) scale(0.6)"/>
+    <use href="#star" transform="translate(68 82) scale(0.5)"/>
+    <use href="#star" transform="translate(330 95) scale(0.4)"/>
+    <use href="#star" transform="translate(255 95) scale(0.5)"/>
+    <use href="#star" transform="translate(300 120) scale(0.4)"/>
+    <use href="#star" transform="translate(225 128) scale(0.5)"/>
+    <use href="#star" transform="translate(380 60) scale(0.5)"/>
+    <use href="#star" transform="translate(150 60) scale(0.4)"/>
+    <use href="#star" transform="translate(440 50) scale(0.5)"/>
+    <use href="#star" transform="translate(195 160) scale(0.4)"/>
+    <use href="#star" transform="translate(350 180) scale(0.5)"/>
+    <use href="#star" transform="translate(110 160) scale(0.4)"/>
+    <use href="#star" transform="translate(60 30) scale(0.4)"/>
+    <use href="#star" transform="translate(280 40) scale(0.4)"/>
+    <g class="twinkle" style="transform-origin: 290px 8px; animation-duration: 2.7s; animation-delay: -0.8s;">
+      <use href="#star" transform="translate(290 8) scale(1.1)"/>
+    </g>
+    <g class="twinkle" style="transform-origin: 420px 104px; animation-duration: 2.5s; animation-delay: -1.9s;">
+      <use href="#star" transform="translate(420 104) scale(1.2)"/>
+    </g>
+  </g>
+
+  <g fill="#ff4040" shape-rendering="crispEdges">
+    <g class="twinkle" style="transform-origin: 8px 95px; animation-duration: 3.2s; animation-delay: -1.1s;">
+      <use href="#star" transform="translate(8 95) scale(1.3)"/>
+    </g>
+    <use href="#star" transform="translate(330 24) scale(0.6)"/>
+    <use href="#star" transform="translate(480 125) scale(0.6)"/>
+    <use href="#star" transform="translate(170 130) scale(0.5)"/>
+  </g>
+
+  <g fill="#4da6ff" shape-rendering="crispEdges">
+    <g class="twinkle" style="transform-origin: 12px 18px; animation-duration: 2.4s; animation-delay: -0.3s;">
+      <use href="#star" transform="translate(12 18) scale(1.2)"/>
+    </g>
+    <use href="#star" transform="translate(200 30) scale(0.6)"/>
+    <use href="#star" transform="translate(466 166) scale(0.6)"/>
+    <g class="twinkle" style="transform-origin: 90px 140px; animation-duration: 3.0s; animation-delay: -2.4s;">
+      <use href="#star" transform="translate(90 140) scale(0.4)"/>
+    </g>
+  </g>
+
+  <g fill="#ffe066" shape-rendering="crispEdges">
+    <g class="twinkle" style="transform-origin: 495px 12px; animation-duration: 3.6s; animation-delay: -2.0s;">
+      <use href="#star" transform="translate(495 12) scale(1.2)"/>
+    </g>
+    <g class="twinkle" style="transform-origin: 122px 103px; animation-duration: 2.9s; animation-delay: -1.6s;">
+      <use href="#star" transform="translate(122 103) scale(1.2)"/>
+    </g>
+    <g class="twinkle" style="transform-origin: 258px 157px; animation-duration: 2.2s; animation-delay: -0.5s;">
+      <use href="#star" transform="translate(258 157) scale(0.7)"/>
+    </g>
+    <use href="#star" transform="translate(360 136) scale(0.5)"/>
   </g>
 
   <rect x="0" y="260" width="512" height="28" fill="url(#glow)"/>
 
-  <g fill="url(#flameBack)" transform="translate(256 288) scale(0.9 0.45) translate(-256 -288)">
-    <path d="M-28,288 Q-32,240 -16,190 Q0,240 -4,288 Z"/>
-    <path d="M8,288 Q4,240 20,190 Q36,240 32,288 Z"/>
-    <path d="M60,288 Q54,225 75,170 Q96,225 90,288 Z"/>
-    <path d="M112,288 Q106,235 128,200 Q150,235 144,288 Z"/>
-    <path d="M170,288 Q162,230 186,180 Q210,230 202,288 Z"/>
-    <path d="M226,288 Q218,215 256,160 Q294,215 286,288 Z"/>
-    <path d="M300,288 Q292,235 316,195 Q340,235 332,288 Z"/>
-    <path d="M360,288 Q352,225 378,175 Q404,225 396,288 Z"/>
-    <path d="M420,288 Q412,240 436,195 Q460,240 452,288 Z"/>
-    <path d="M480,288 Q474,235 496,200 Q512,240 506,288 Z"/>
-    <path d="M514,288 Q508,235 530,200 Q546,240 540,288 Z"/>
-  </g>
+  <g class="flame flame-back" fill="#c1121f" shape-rendering="crispEdges">
+    <g class="seg s1">
+        <use href="#flame-short" transform="translate(0 288) scale(1 0.85)"/>
+        <use href="#flame-tall" transform="translate(31 288) scale(1 0.7)"/>
+        <use href="#flame-short" transform="translate(62 288) scale(1 0.9)"/>
+        <use href="#flame-tall" transform="translate(93 288) scale(1 0.75)"/>
+    </g>
+    <g class="seg s2">
+        <use href="#flame-short" transform="translate(124 288) scale(1 0.8)"/>
+        <use href="#flame-tall" transform="translate(155 288) scale(1 0.65)"/>
+        <use href="#flame-short" transform="translate(186 288) scale(1 0.95)"/>
+        <use href="#flame-tall" transform="translate(217 288) scale(1 0.75)"/>
+    </g>
+    <g class="seg s3">
+        <use href="#flame-short" transform="translate(248 288) scale(1 0.85)"/>
+        <use href="#flame-tall" transform="translate(279 288) scale(1 0.7)"/>
+        <use href="#flame-short" transform="translate(309 288) scale(1 0.9)"/>
+        <use href="#flame-tall" transform="translate(340 288) scale(1 0.75)"/>
+    </g>
+    <g class="seg s4">
+        <use href="#flame-short" transform="translate(371 288) scale(1 0.8)"/>
+        <use href="#flame-tall" transform="translate(402 288) scale(1 0.65)"/>
+        <use href="#flame-short" transform="translate(433 288) scale(1 0.95)"/>
+        <use href="#flame-short" transform="translate(464 288) scale(1 0.85)"/>
+    </g>
+</g>
 
-  <g fill="url(#flameFront)" transform="translate(256 288) scale(0.9 0.45) translate(-256 -288)">
-    <path d="M-24,288 Q-26,250 -9,225 Q8,250 4,288 Z"/>
-    <path d="M28,288 Q26,250 43,225 Q60,250 56,288 Z"/>
-    <path d="M84,288 Q80,255 100,235 Q118,255 114,288 Z"/>
-    <path d="M140,288 Q136,250 160,225 Q182,250 178,288 Z"/>
-    <path d="M200,288 Q196,258 220,240 Q242,258 236,288 Z"/>
-    <path d="M266,288 Q262,252 288,230 Q312,252 306,288 Z"/>
-    <path d="M328,288 Q324,255 350,236 Q372,255 366,288 Z"/>
-    <path d="M390,288 Q386,250 412,225 Q436,250 430,288 Z"/>
-    <path d="M449,288 Q444,258 470,238 Q490,258 484,288 Z"/>
-    <path d="M488,288 Q483,258 509,238 Q529,258 523,288 Z"/>
-  </g>
+<g class="flame flame-mid" fill="#ff7b00" shape-rendering="crispEdges">
+    <g class="seg s1">
+        <use href="#flame-short" transform="translate(6 288) scale(0.75 0.72)"/>
+        <use href="#flame-tall" transform="translate(37 288) scale(0.75 0.6)"/>
+        <use href="#flame-short" transform="translate(68 288) scale(0.75 0.77)"/>
+        <use href="#flame-tall" transform="translate(99 288) scale(0.75 0.64)"/>
+    </g>
+    <g class="seg s2">
+        <use href="#flame-short" transform="translate(130 288) scale(0.75 0.68)"/>
+        <use href="#flame-tall" transform="translate(161 288) scale(0.75 0.55)"/>
+        <use href="#flame-short" transform="translate(192 288) scale(0.75 0.81)"/>
+        <use href="#flame-tall" transform="translate(223 288) scale(0.75 0.64)"/>
+    </g>
+    <g class="seg s3">
+        <use href="#flame-short" transform="translate(254 288) scale(0.75 0.72)"/>
+        <use href="#flame-tall" transform="translate(285 288) scale(0.75 0.6)"/>
+        <use href="#flame-short" transform="translate(315 288) scale(0.75 0.77)"/>
+        <use href="#flame-tall" transform="translate(346 288) scale(0.75 0.64)"/>
+    </g>
+    <g class="seg s4">
+        <use href="#flame-short" transform="translate(377 288) scale(0.75 0.68)"/>
+        <use href="#flame-tall" transform="translate(408 288) scale(0.75 0.55)"/>
+        <use href="#flame-short" transform="translate(439 288) scale(0.75 0.81)"/>
+        <use href="#flame-short" transform="translate(470 288) scale(0.75 0.72)"/>
+    </g>
+</g>
 
-  
+<g class="flame flame-front" fill="#ffd166" shape-rendering="crispEdges">
+    <g class="seg s1">
+        <use href="#flame-short" transform="translate(12 288) scale(0.5 0.51)"/>
+        <use href="#flame-tall" transform="translate(43 288) scale(0.5 0.42)"/>
+        <use href="#flame-short" transform="translate(74 288) scale(0.5 0.54)"/>
+        <use href="#flame-tall" transform="translate(105 288) scale(0.5 0.45)"/>
+    </g>
+    <g class="seg s2">
+        <use href="#flame-short" transform="translate(136 288) scale(0.5 0.48)"/>
+        <use href="#flame-tall" transform="translate(167 288) scale(0.5 0.39)"/>
+        <use href="#flame-short" transform="translate(198 288) scale(0.5 0.57)"/>
+        <use href="#flame-tall" transform="translate(229 288) scale(0.5 0.45)"/>
+    </g>
+    <g class="seg s3">
+        <use href="#flame-short" transform="translate(260 288) scale(0.5 0.51)"/>
+        <use href="#flame-tall" transform="translate(291 288) scale(0.5 0.42)"/>
+        <use href="#flame-short" transform="translate(321 288) scale(0.5 0.54)"/>
+        <use href="#flame-tall" transform="translate(352 288) scale(0.5 0.45)"/>
+    </g>
+    <g class="seg s4">
+        <use href="#flame-short" transform="translate(383 288) scale(0.5 0.48)"/>
+        <use href="#flame-tall" transform="translate(414 288) scale(0.5 0.39)"/>
+        <use href="#flame-short" transform="translate(445 288) scale(0.5 0.57)"/>
+        <use href="#flame-short" transform="translate(476 288) scale(0.5 0.51)"/>
+    </g>
+</g>
+
+<g class="wisp wisp-1" fill="#ff7b00" shape-rendering="crispEdges">
+    <use href="#flame-wisp" transform="translate(70 262) scale(0.2 0.4)"/>
+</g>
+
+<g class="wisp wisp-2" fill="#ffd166" shape-rendering="crispEdges">
+    <use href="#flame-wisp" transform="translate(200 258) scale(0.2 0.4)"/>
+</g>
+
+<g class="wisp wisp-3" fill="#ff7b00" shape-rendering="crispEdges">
+    <use href="#flame-wisp" transform="translate(330 256) scale(0.2 0.4)"/>
+</g>
+
+<g class="wisp wisp-4" fill="#ffd166" shape-rendering="crispEdges">
+    <use href="#flame-wisp" transform="translate(452 262) scale(0.2 0.4)"/>
+</g>
+
 </svg>
