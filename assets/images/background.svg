@@ -171,7 +171,7 @@
     <g class="twinkle" style="transform-origin: 12px 18px; animation-duration: 2.4s; animation-delay: -0.3s;">
       <use href="#star" transform="translate(12 18) scale(1.2)"/>
     </g>
-    <use href="#star" transform="translate(200 30) scale(0.6)"/>
+    <use href="#star" transform="translate(190 30) scale(0.6)"/>
     <use href="#star" transform="translate(466 166) scale(0.6)"/>
     <g class="twinkle" style="transform-origin: 90px 140px; animation-duration: 3.0s; animation-delay: -2.4s;">
       <use href="#star" transform="translate(90 140) scale(0.4)"/>
