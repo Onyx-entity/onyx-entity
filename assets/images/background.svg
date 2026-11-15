@@ -149,7 +149,7 @@
     <use href="#star" transform="translate(350 180) scale(0.5)"/>
     <use href="#star" transform="translate(110 160) scale(0.4)"/>
     <use href="#star" transform="translate(60 30) scale(0.4)"/>
-    <use href="#star" transform="translate(280 40) scale(0.4)"/>
+    <use href="#star" transform="translate(280 46) scale(0.4)"/>
     <g class="twinkle" style="transform-origin: 290px 8px; animation-duration: 2.7s; animation-delay: -0.8s;">
       <use href="#star" transform="translate(290 8) scale(1.1)"/>
     </g>
