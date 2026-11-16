@@ -204,3 +204,114 @@ h1 {
   outline: 2px solid #000000;
   outline-offset: 2px;
 }
+
+.post-carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.post-carousel h2 {
+  font-family: 'Press Start 2P';
+  margin: 0;
+}
+
+.post-carousel__track {
+  width: 100%;
+  height: 24rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+  padding: 0.25rem 0.5rem;
+  list-style: none;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.post-carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.post-carousel__track:focus-visible {
+  outline: 2px solid #000000;
+  outline-offset: 2px;
+}
+
+.post-carousel__btn {
+  transform: none;
+}
+
+.post-carousel__btn--prev svg,
+.post-carousel__btn--next svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.carousel-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.post-card {
+  flex: 0 0 auto;
+  height: 9rem;
+  box-sizing: border-box;
+  scroll-snap-align: start;
+}
+
+.post-card a {
+  height: 100%;
+}
+
+.post-card__inner {
+  height: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem 1.5rem;
+  text-align: left;
+}
+
+.post-card__date {
+  margin: 0;
+  padding-right: 1rem;
+  border-right: 2px solid #000000;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.post-card__meta {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .post-carousel__track {
+    height: 26rem;
+  }
+
+  .post-card {
+    height: auto;
+  }
+
+  .post-card__inner {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .post-card__date {
+    padding-right: 0;
+    padding-bottom: 0.5rem;
+    border-right: none;
+    border-bottom: 2px solid #000000;
+  }
+}

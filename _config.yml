@@ -1,0 +1,11 @@
+title: Onyx World
+url: "https://onyx-entity.github.io/onyx-entity/"
+baseurl: ""
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - LICENSE-CONTENT.txt
+  - README.md
+  - vendor

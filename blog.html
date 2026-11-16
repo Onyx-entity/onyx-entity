@@ -1,0 +1,99 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onyx World</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    
+  <header>
+    <h1>Onyx World</h1>
+    <p>Welcome to my mystical realm of curiosities and absurdities. Enjoy your stay and please don't forget to flush.</p>
+  </header>
+
+  <nav class="site-nav">
+    <a href="index.html">Home</a>
+    <a href="blog.html">Blog</a>
+    <a href="research.html">Research</a>
+    <a href="partners.html">Partners</a>
+  </nav>
+  
+  <main>
+    <section class="post-carousel" aria-labelledby="posts-heading">
+        <h2 id="posts-heading">Latest posts</h2>
+
+        <button class="carousel-btn post-carousel__btn post-carousel__btn--prev" type="button" aria-label="Scroll to newer posts">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 15l6-6 6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
+            </svg>
+        </button>
+
+        <ul class="post-carousel__track" tabindex="0" aria-label="Blog posts">
+            {% for post in site.posts %}
+            {% assign words = post.content | strip_html | number_of_words %}
+            {% assign minutes = words | divided_by: 200.0 | ceil | at_least: 1 %}
+            <li class="card post-card">
+                <a href="{{ post.url | relative_url }}">
+                    <div class="post-card__inner">
+                        <p class="post-card__date">
+                            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %B %Y" }}</time>
+                        </p>
+                        <div>
+                            <h3>{{ post.title }}</h3>
+                            <p class="post-card__meta">{{ minutes }} min read</p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <button class="carousel-btn post-carousel__btn post-carousel__btn--next" type="button" aria-label="Scroll to older posts">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
+            </svg>
+        </button>
+    </section>
+  </main>
+
+
+  <footer>
+    <p>Content is licensed under CC BY 4.0 unless otherwise noted.</p>
+  </footer>
+
+  <script>
+    const track = document.querySelector('.post-carousel__track');
+    const prevBtn = document.querySelector('.post-carousel__btn--prev');
+    const nextBtn = document.querySelector('.post-carousel__btn--next');
+
+    function scrollStep() {
+        const card = track.querySelector('.post-card');
+        const gap = parseFloat(getComputedStyle(track).rowGap) || 0;
+        return card.offsetHeight + gap;
+    }
+
+    prevBtn.addEventListener('click', () => {
+        track.scrollBy({ top: -scrollStep(), behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+        track.scrollBy({ top: scrollStep(), behavior: 'smooth' });
+    });
+
+    function updateButtons() {
+        const maxScroll = track.scrollHeight - track.clientHeight;
+        prevBtn.disabled = track.scrollTop <= 1;
+        nextBtn.disabled = track.scrollTop >= maxScroll - 1;
+    }
+
+    track.addEventListener('scroll', updateButtons, { passive: true });
+    window.addEventListener('resize', updateButtons);
+    updateButtons();
+  </script>
+
+</body>
+</html>
