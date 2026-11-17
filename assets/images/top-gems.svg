@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 80" width="1000" height="80" shape-rendering="crispEdges">
+  <defs>
+    <g id="gem">
+      <rect x="4" y="0" width="4" height="4"/>
+      <rect x="0" y="4" width="12" height="4"/>
+      <rect x="2" y="8" width="8" height="4"/>
+      <rect x="4" y="12" width="4" height="4"/>
+      <rect x="2" y="4" width="2" height="2" fill="#ffffff" opacity="0.6"/>
+    </g>
+  </defs>
+
+  <use href="#gem" transform="translate(44,32)" fill="#000000"/>
+  <use href="#gem" transform="translate(100,32)" fill="#000000"/>
+  <use href="#gem" transform="translate(156,32)" fill="#000000"/>
+  <use href="#gem" transform="translate(212,32)" fill="#000000"/>
+  <use href="#gem" transform="translate(268,32)" fill="#000000"/>
+  <use href="#gem" transform="translate(720,32)" fill="#000000"/>
+  <use href="#gem" transform="translate(780,32)" fill="#000000"/>
+  <use href="#gem" transform="translate(840,32)" fill="#000000"/>
+  <use href="#gem" transform="translate(896,32)" fill="#000000"/>
+  <use href="#gem" transform="translate(952,32)" fill="#000000"/>
+</svg>
