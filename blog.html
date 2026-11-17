@@ -26,7 +26,7 @@
     <section class="post-carousel" aria-labelledby="posts-heading">
         <h2 id="posts-heading">Latest posts</h2>
 
-        <button class="carousel-btn post-carousel__btn post-carousel__btn--prev" type="button" aria-label="Scroll to newer posts">
+        <button id="prevBtn" class="carousel-btn post-carousel__btn post-carousel__btn--prev" type="button" aria-label="Scroll to newer posts">
             <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M6 15l6-6 6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
             </svg>
@@ -52,7 +52,11 @@
             {% endfor %}
         </ul>
 
-        <button class="carousel-btn post-carousel__btn post-carousel__btn--next" type="button" aria-label="Scroll to older posts">
+        <div class="post-scrollbar" id="postScrollbar" aria-hidden="true">
+            <div class="post-scrollbar__thumb" id="postThumb"></div>
+        </div>
+
+        <button id="nextBtn" class="carousel-btn post-carousel__btn post-carousel__btn--next" type="button" aria-label="Scroll to older posts">
             <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
             </svg>
@@ -61,38 +65,88 @@
   </main>
 
 
+
   <footer>
     <p>Content is licensed under CC BY 4.0 unless otherwise noted.</p>
   </footer>
 
   <script>
-    const track = document.querySelector('.post-carousel__track');
-    const prevBtn = document.querySelector('.post-carousel__btn--prev');
-    const nextBtn = document.querySelector('.post-carousel__btn--next');
+    const postTrack = document.querySelector('.post-carousel__track');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const postScrollbar = document.getElementById('postScrollbar');
+    const postThumb = document.getElementById('postThumb');
 
     function scrollStep() {
-        const card = track.querySelector('.post-card');
-        const gap = parseFloat(getComputedStyle(track).rowGap) || 0;
+        const card = postTrack.querySelector('.post-card');
+        const gap = parseFloat(getComputedStyle(postTrack).rowGap) || 0;
         return card.offsetHeight + gap;
     }
 
     prevBtn.addEventListener('click', () => {
-        track.scrollBy({ top: -scrollStep(), behavior: 'smooth' });
+        postTrack.scrollBy({ top: -scrollStep(), behavior: 'smooth' });
     });
 
     nextBtn.addEventListener('click', () => {
-        track.scrollBy({ top: scrollStep(), behavior: 'smooth' });
+        postTrack.scrollBy({ top: scrollStep(), behavior: 'smooth' });
     });
 
     function updateButtons() {
-        const maxScroll = track.scrollHeight - track.clientHeight;
-        prevBtn.disabled = track.scrollTop <= 1;
-        nextBtn.disabled = track.scrollTop >= maxScroll - 1;
+        const maxScroll = postTrack.scrollHeight - postTrack.clientHeight;
+        prevBtn.disabled = postTrack.scrollTop <= 1;
+        nextBtn.disabled = postTrack.scrollTop >= maxScroll - 1;
     }
 
-    track.addEventListener('scroll', updateButtons, { passive: true });
-    window.addEventListener('resize', updateButtons);
+    function updatePostThumb() {
+        const trackHeight = postTrack.clientHeight;
+        const contentHeight = postTrack.scrollHeight;
+        const railHeight = postScrollbar.clientHeight - 4;
+        const minThumb = 24;
+
+        if (contentHeight <= trackHeight) {
+        postThumb.style.display = 'none';
+        return;
+        }
+        postThumb.style.display = 'block';
+
+        const thumbHeight = Math.max(minThumb, (trackHeight / contentHeight) * railHeight);
+        const maxScroll = contentHeight - trackHeight;
+        const maxThumbTop = railHeight - thumbHeight;
+        const thumbTop = (postTrack.scrollTop / maxScroll) * maxThumbTop;
+
+        postThumb.style.height = thumbHeight + 'px';
+        postThumb.style.transform = `translateY(${thumbTop}px)`;
+    }
+
+    function scrollToRailPosition(clientY) {
+        const rect = postScrollbar.getBoundingClientRect();
+        const ratio = Math.min(Math.max((clientY - rect.top) / rect.height, 0), 1);
+        const maxScroll = postTrack.scrollHeight - postTrack.clientHeight;
+        postTrack.scrollTop = ratio * maxScroll;
+    }
+
+    let dragging = false;
+    postScrollbar.addEventListener('pointerdown', (e) => {
+        dragging = true;
+        postScrollbar.setPointerCapture(e.pointerId);
+        scrollToRailPosition(e.clientY);
+    });
+    postScrollbar.addEventListener('pointermove', (e) => {
+        if (dragging) scrollToRailPosition(e.clientY);
+    });
+    postScrollbar.addEventListener('pointerup', () => { dragging = false; });
+
+    postTrack.addEventListener('scroll', () => {
+        updateButtons();
+        updatePostThumb();
+    }, { passive: true });
+    window.addEventListener('resize', () => {
+        updateButtons();
+        updatePostThumb();
+    });
+
     updateButtons();
+    updatePostThumb();
   </script>
 
 </body>
