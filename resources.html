@@ -1,0 +1,61 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onyx World</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    
+  <header>
+    <h1>Onyx World</h1>
+    <p>Welcome to my mystical realm of curiosities and absurdities. Enjoy your stay and please don't forget to flush.</p>
+  </header>
+
+  <nav class="site-nav">
+    <a href="index.html">Home</a>
+    <a href="blog.html">Blog</a>
+    <a href="resources.html">Resources</a>
+    <a href="kindred.html">Kindred</a>
+  </nav>
+
+  <main>
+    
+    <nav class="resources-index site-nav">
+        <ul>
+            {% assign groups = site.data.resources | group_by: "category" %}
+            {% for group in groups %}
+            <li><a href="#{{ group.name | slugify }}">{{ group.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+
+    {% for group in groups %}
+    <details class="resource-group" id="{{ group.name | slugify }}" open>
+      <summary><h2>{{ group.name }}</h2></summary>
+      <ul class="resource-list">
+        {% for item in group.items %}
+        <li class="resource-entry">
+          <div class="resource-entry__inner">
+            {% if item.image %}
+              <img src="{{ item.image | relative_url }}" alt="" class="resource-entry__image">
+            {% endif %}
+            <div>
+              <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a>
+              <p>{{ item.description }}</p>
+              {% if item.checked %}<small>Last checked: {{ item.checked }}</small>{% endif %}
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </details>
+    {% endfor %}
+
+  </main>
+
+</body>
+</html>  

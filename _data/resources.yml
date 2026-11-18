@@ -1,0 +1,23 @@
+- category: Category 1
+  title: Placeholder Tool A
+  url: https://example.com/tool-a
+  description: A short description of the tool and why it's useful.
+  checked: "2026-11-18"
+
+- category: Category 1
+  title: Placeholder Tool B
+  url: https://example.com/tool-b
+  description: A short description of the second tool.
+  checked: "2026-11-18"
+
+- category: Category 2
+  title: Placeholder Reference
+  url: https://example.com/reference
+  description: A short description of a key source.
+  checked: "2026-11-18"
+
+- category: Category 3
+  title: Placeholder Tip
+  url: https://example.com/tip
+  description: A short description of a writing tip or guide.
+  checked: "2026-11-18"
