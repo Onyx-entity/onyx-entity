@@ -22,40 +22,143 @@
     <a href="kindred.html">Kindred</a>
   </nav>
 
-  <main>
-    
-    <nav class="resources-index site-nav">
-        <ul>
+  <main class="resources-main">
+    <div class="resources-frame">
+
+      <div class="resources-scroll" id="resourcesScroll" tabindex="0">
+
+        <nav class="resources-index site-nav">
+          <ul>
             {% assign groups = site.data.resources | group_by: "category" %}
             {% for group in groups %}
             <li><a href="#{{ group.name | slugify }}">{{ group.name }}</a></li>
             {% endfor %}
-        </ul>
-    </nav>
+          </ul>
+        </nav>
 
-    {% for group in groups %}
-    <details class="resource-group" id="{{ group.name | slugify }}" open>
-      <summary><h2>{{ group.name }}</h2></summary>
-      <ul class="resource-list">
-        {% for item in group.items %}
-        <li class="resource-entry">
-          <div class="resource-entry__inner">
-            {% if item.image %}
-              <img src="{{ item.image | relative_url }}" alt="" class="resource-entry__image">
-            {% endif %}
-            <div>
-              <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a>
-              <p>{{ item.description }}</p>
-              {% if item.checked %}<small>Last checked: {{ item.checked }}</small>{% endif %}
-            </div>
-          </div>
-        </li>
+        {% for group in groups %}
+        <details class="resource-group" id="{{ group.name | slugify }}" open>
+          <summary><h2>{{ group.name }}</h2></summary>
+          <ul class="resource-list">
+            {% for item in group.items %}
+            <li class="resource-entry">
+              <div class="resource-entry__inner">
+                {% if item.image %}
+                  <img src="{{ item.image | relative_url }}" alt="" class="resource-entry__image">
+                {% endif %}
+                <div>
+                  <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a>
+                  <p>{{ item.description }}</p>
+                  {% if item.checked %}<small>Last checked: {{ item.checked }}</small>{% endif %}
+                </div>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+        </details>
         {% endfor %}
-      </ul>
-    </details>
-    {% endfor %}
 
+      </div>
+
+      <button type="button" class="carousel-btn post-carousel__btn--prev" id="resourcesPrev" aria-label="Scroll up">
+        <svg viewBox="0 0 8 8" aria-hidden="true" focusable="false" shape-rendering="crispEdges">
+          <path fill="currentColor" d="M3 0h2v8H3z M2 1h1v1H2z M5 1h1v1H5z M1 2h1v1H1z M6 2h1v1H6z M0 3h1v1H0z M7 3h1v1H7z"/>
+        </svg>
+      </button>
+
+      <button type="button" class="carousel-btn post-carousel__btn--next" id="resourcesNext" aria-label="Scroll down">
+        <svg viewBox="0 0 8 8" aria-hidden="true" focusable="false" shape-rendering="crispEdges">
+          <path fill="currentColor" d="M3 0h2v8H3z M2 6h1v1H2z M5 6h1v1H5z M1 5h1v1H1z M6 5h1v1H6z M0 4h1v1H0z M7 4h1v1H7z"/>
+        </svg>
+      </button>
+
+      <div class="post-scrollbar" id="resourcesRail" aria-hidden="true">
+        <div class="post-scrollbar__thumb"></div>
+      </div>
+
+    </div>
   </main>
+
+  <footer>
+    <p>Content is licensed under CC BY 4.0 unless otherwise noted.</p>
+  </footer>
+
+  <script>
+    const postTrack = document.getElementById('resourcesScroll');
+    const prevBtn = document.getElementById('resourcesPrev');
+    const nextBtn = document.getElementById('resourcesNext');
+    const postScrollbar = document.getElementById('resourcesRail');
+    const postThumb = postScrollbar.querySelector('.post-scrollbar__thumb');
+
+    function scrollStep() {
+        return postTrack.clientHeight * 0.8;
+    }
+
+    prevBtn.addEventListener('click', () => {
+        postTrack.scrollBy({ top: -scrollStep(), behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+        postTrack.scrollBy({ top: scrollStep(), behavior: 'smooth' });
+    });
+
+    function updateButtons() {
+        const maxScroll = postTrack.scrollHeight - postTrack.clientHeight;
+        prevBtn.disabled = postTrack.scrollTop <= 1;
+        nextBtn.disabled = postTrack.scrollTop >= maxScroll - 1;
+    }
+
+    function updatePostThumb() {
+        const trackHeight = postTrack.clientHeight;
+        const contentHeight = postTrack.scrollHeight;
+        const railHeight = postScrollbar.clientHeight - 4;
+        const minThumb = 24;
+
+        if (contentHeight <= trackHeight) {
+            postThumb.style.display = 'none';
+            return;
+        }
+        postThumb.style.display = 'block';
+
+        const thumbHeight = Math.max(minThumb, (trackHeight / contentHeight) * railHeight);
+        const maxScroll = contentHeight - trackHeight;
+        const maxThumbTop = railHeight - thumbHeight;
+        const thumbTop = (postTrack.scrollTop / maxScroll) * maxThumbTop;
+
+        postThumb.style.height = thumbHeight + 'px';
+        postThumb.style.transform = `translateY(${thumbTop}px)`;
+    }
+
+    function scrollToRailPosition(clientY) {
+        const rect = postScrollbar.getBoundingClientRect();
+        const ratio = Math.min(Math.max((clientY - rect.top) / rect.height, 0), 1);
+        const maxScroll = postTrack.scrollHeight - postTrack.clientHeight;
+        postTrack.scrollTop = ratio * maxScroll;
+    }
+
+    let dragging = false;
+    postScrollbar.addEventListener('pointerdown', (e) => {
+        dragging = true;
+        postScrollbar.setPointerCapture(e.pointerId);
+        scrollToRailPosition(e.clientY);
+    });
+    postScrollbar.addEventListener('pointermove', (e) => {
+        if (dragging) scrollToRailPosition(e.clientY);
+    });
+    postScrollbar.addEventListener('pointerup', () => { dragging = false; });
+
+    postTrack.addEventListener('scroll', () => {
+        updateButtons();
+        updatePostThumb();
+    }, { passive: true });
+    window.addEventListener('resize', () => {
+        updateButtons();
+        updatePostThumb();
+    });
+
+    updateButtons();
+    updatePostThumb();
+  </script>
 
 </body>
 </html>  

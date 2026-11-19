@@ -379,17 +379,20 @@ h1 {
 
 .resources-index {
   position: sticky;
+  text-align: center;
   top: 0;
-  z-index: 10;
+  z-index: 4;
+  width: fit-content;
   background-color: #E7DEFF;
-  padding: 0.5rem 0;
-  margin: 0;
-  display: block;
+  padding: 0.5rem;
+  margin: 0 auto 1rem;
 }
 
 .resources-index ul {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
   justify-content: center;
   gap: 0.75rem;
   list-style: none;
@@ -440,3 +443,97 @@ h1 {
   object-fit: contain;
   image-rendering: pixelated;
 }
+
+.resources-frame {
+  position: relative;
+  width: 100%;
+}
+
+.resources-frame .post-scrollbar {
+  top: 4rem;
+  bottom: 6.5rem;
+}
+
+.resources-frame .post-carousel__btn--prev {
+  top: -0.625rem;
+}
+
+.resources-frame .post-carousel__btn--next {
+  bottom: 0.625rem;
+}
+
+#resourcesPrev {
+  z-index: 11;
+}
+
+.resources-scroll {
+  height: 24rem; 
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding-right: 0.5rem;
+  padding-bottom: 4rem;
+  box-sizing: border-box;
+}
+
+.resources-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.resources-scroll:focus-visible {
+  outline: 2px solid #000000;
+  outline-offset: 2px;
+}
+
+.resources-main {
+  position: relative;
+  max-width: 1000px;
+  margin: 1rem auto 3rem;
+  padding: 1.25rem 0 0;
+  background-color: transparent;
+  background-image: none;
+  box-shadow: none;
+  color: #000000;
+}
+
+.resources-main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: #E7DEFF;
+  background-image: url("images/top-gems.svg"), url("images/top-gems.svg");
+  background-repeat: no-repeat, no-repeat;
+  background-position: center top, center calc(100% + 16px);
+  background-size: 100% 80px, 100% 80px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  left: -3rem;
+  right: -3rem;
+  transform: none;
+}
+
+.resources-main::after {
+  content: "";
+  position: absolute;
+  left: -3rem;
+  right: -3rem;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: 8px;
+  background-image:
+    url("images/top-gems.svg"),
+    linear-gradient(#E7DEFF, #E7DEFF),
+    url("images/top-gems.svg"),
+    linear-gradient(#E7DEFF, #E7DEFF);
+  background-repeat: no-repeat;
+  background-position: center top, center top, center calc(100% + 16px), center bottom;
+  background-size: 100% 80px, 100% 4rem, 100% 80px, 100% 3rem;
+}
+
+#resourcesNext {
+  z-index: 3;
+}
+
