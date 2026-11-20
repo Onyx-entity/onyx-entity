@@ -378,15 +378,16 @@ h1 {
 }
 
 .resources-index {
-  position: sticky;
-  text-align: center;
-  top: 0;
-  z-index: 12;
-  width: fit-content;
-  background-color: #E7DEFF;
-  padding: 0.5rem;
-  margin: 0 auto 1rem;
-  transform: translateX(-1.875rem);
+    grid-column: 2;
+    grid-row: 1;
+    position: static;
+    width: auto;
+    margin: 1rem 2.5rem 0 0;
+    padding: 0;
+    text-align: center;
+    transform: none;
+    z-index: 12;
+    background-color: transparent;
 }
 
 .resources-index ul {
@@ -453,16 +454,19 @@ h1 {
 .resources-frame {
   position: relative;
   width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 16.5rem;
+  align-items: start;
 }
 
 .resources-frame .post-scrollbar {
-  top: 3rem;
+  top: 0;
   bottom: 4.25rem;
   z-index: 3;
 }
 
 .resources-frame .post-carousel__btn--prev {
-  top: -0.625rem;
+  top: -3.75rem;
 }
 
 .resources-frame .post-carousel__btn--next {
@@ -474,7 +478,7 @@ h1 {
 }
 
 .resources-scroll {
-  height: 25rem; 
+  height: 21.5rem; 
   overflow-y: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;
@@ -482,6 +486,8 @@ h1 {
   padding-right: 0.5rem;
   padding-bottom: 4rem;
   box-sizing: border-box;
+  grid-column: 1;
+  grid-row: 1;
 }
 
 .resources-scroll::-webkit-scrollbar {
@@ -544,4 +550,14 @@ h1 {
 #resourcesNext {
   z-index: 3;
 }
+
+.resources-heading {
+    font-family: 'Press Start 2P';
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 0.25rem 0 1rem;
+    position: relative;
+    z-index: 3;
+}
+
 

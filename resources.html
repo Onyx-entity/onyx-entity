@@ -23,19 +23,20 @@
   </nav>
 
   <main class="resources-main">
+    <h1 class="resources-heading">Resources</h1>
+
     <div class="resources-frame">
 
+      <nav class="resources-index site-nav">
+        <ul>
+          {% assign groups = site.data.resources | group_by: "category" %}
+          {% for group in groups %}
+          <li><a href="#{{ group.name | slugify }}">{{ group.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+
       <div class="resources-scroll" id="resourcesScroll" tabindex="0">
-
-        <nav class="resources-index site-nav">
-          <ul>
-            {% assign groups = site.data.resources | group_by: "category" %}
-            {% for group in groups %}
-            <li><a href="#{{ group.name | slugify }}">{{ group.name }}</a></li>
-            {% endfor %}
-          </ul>
-        </nav>
-
         {% for group in groups %}
         <details class="resource-group" id="{{ group.name | slugify }}" open>
           <summary><h2>{{ group.name }}</h2></summary>
@@ -57,7 +58,6 @@
           </ul>
         </details>
         {% endfor %}
-
       </div>
 
       <button type="button" class="carousel-btn post-carousel__btn--prev" id="resourcesPrev" aria-label="Scroll up">
