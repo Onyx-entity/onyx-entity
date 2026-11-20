@@ -381,7 +381,7 @@ h1 {
   position: sticky;
   text-align: center;
   top: 0;
-  z-index: 4;
+  z-index: 12;
   width: fit-content;
   background-color: #E7DEFF;
   padding: 0.5rem;
