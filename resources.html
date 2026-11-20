@@ -90,20 +90,83 @@
     const postScrollbar = document.getElementById('resourcesRail');
     const postThumb = postScrollbar.querySelector('.post-scrollbar__thumb');
 
+    const SCROLL_DURATION = 400;
+    const WHEEL_FACTOR = 0.7;
+    let animFrame = null;
+    let scrollTarget = 0;
+
     function scrollStep() {
-        return postTrack.clientHeight * 0.8;
+        return postTrack.clientHeight * 0.4;
+    }
+
+    function maxScrollTop() {
+        return postTrack.scrollHeight - postTrack.clientHeight;
+    }
+
+    function currentBase() {
+        return animFrame ? scrollTarget : postTrack.scrollTop;
+    }
+
+    function stopAnimation() {
+        cancelAnimationFrame(animFrame);
+        animFrame = null;
+        postTrack.style.scrollBehavior = '';
+    }
+
+    function animateTo(target, duration = SCROLL_DURATION) {
+        cancelAnimationFrame(animFrame);
+        scrollTarget = Math.min(Math.max(target, 0), maxScrollTop());
+        const start = postTrack.scrollTop;
+        const change = scrollTarget - start;
+        const startTime = performance.now();
+        postTrack.style.scrollBehavior = 'auto';
+
+        function step(now) {
+            const t = Math.min((now - startTime) / duration, 1);
+            const eased = 0.5 - 0.5 * Math.cos(Math.PI * t);
+            postTrack.scrollTop = Math.round(start + change * eased);
+            if (t < 1) {
+                animFrame = requestAnimationFrame(step);
+            } else {
+                animFrame = null;
+                postTrack.style.scrollBehavior = '';
+            }
+        }
+        animFrame = requestAnimationFrame(step);
     }
 
     prevBtn.addEventListener('click', () => {
-        postTrack.scrollBy({ top: -scrollStep(), behavior: 'smooth' });
+        animateTo(currentBase() - scrollStep());
     });
 
     nextBtn.addEventListener('click', () => {
-        postTrack.scrollBy({ top: scrollStep(), behavior: 'smooth' });
+        animateTo(currentBase() + scrollStep());
+    });
+
+    postTrack.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        let delta = e.deltaY;
+        if (e.deltaMode === 1) delta *= 16;
+        else if (e.deltaMode === 2) delta *= postTrack.clientHeight;
+        animateTo(currentBase() + delta * WHEEL_FACTOR);
+    }, { passive: false });
+
+    postTrack.addEventListener('keydown', (e) => {
+        const page = scrollStep();
+        const keyOffsets = {
+            ArrowDown: 60,
+            ArrowUp: -60,
+            PageDown: page,
+            PageUp: -page,
+            ' ': page
+        };
+        if (!(e.key in keyOffsets)) return;
+        e.preventDefault();
+        animateTo(currentBase() + keyOffsets[e.key]);
     });
 
     function updateButtons() {
-        const maxScroll = postTrack.scrollHeight - postTrack.clientHeight;
+        const maxScroll = maxScrollTop();
         prevBtn.disabled = postTrack.scrollTop <= 1;
         nextBtn.disabled = postTrack.scrollTop >= maxScroll - 1;
     }
@@ -132,12 +195,12 @@
     function scrollToRailPosition(clientY) {
         const rect = postScrollbar.getBoundingClientRect();
         const ratio = Math.min(Math.max((clientY - rect.top) / rect.height, 0), 1);
-        const maxScroll = postTrack.scrollHeight - postTrack.clientHeight;
-        postTrack.scrollTop = ratio * maxScroll;
+        postTrack.scrollTop = ratio * maxScrollTop();
     }
 
     let dragging = false;
     postScrollbar.addEventListener('pointerdown', (e) => {
+        stopAnimation();
         dragging = true;
         postScrollbar.setPointerCapture(e.pointerId);
         scrollToRailPosition(e.clientY);

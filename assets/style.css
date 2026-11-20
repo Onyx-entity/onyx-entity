@@ -433,9 +433,14 @@ h1 {
 
 .resource-entry__inner {
   display: grid;
-  grid-template-columns: 6rem 1fr;
+  grid-template-columns: 1fr;
   gap: 1rem;
   align-items: start;
+  width: 100%;
+}
+
+.resource-entry__inner:has(.resource-entry__image) {
+  grid-template-columns: 6rem 1fr;
 }
 
 .resource-entry__image {
@@ -469,7 +474,7 @@ h1 {
 }
 
 .resources-scroll {
-  height: 24rem; 
+  height: 25rem; 
   overflow-y: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;
