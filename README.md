@@ -14,4 +14,5 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
-Written content (posts, research summaries, and partner descriptions) is licensed under CC BY 4.0, see LICENSE-CONTENT.txt. Website code is licensed under MIT, see LICENSE.
+
+Copyright © 2026 Onyx World. All rights reserved.
