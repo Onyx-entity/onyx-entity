@@ -1,6 +1,6 @@
 title: Onyx World
 url: "https://onyx-entity.github.io/onyx-entity/"
-baseurl: ""
+baseurl: "/onyx-entity"
 
 exclude:
   - Gemfile
