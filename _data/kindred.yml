@@ -1,0 +1,14 @@
+- category: Websites
+  title: Placeholder Site A
+  url: https://example.com/site-a
+  description: A short description of why this site shares the spirit of your own.
+
+- category: Websites
+  title: Placeholder Site B
+  url: https://example.com/site-b
+  description: A short description of the second site.
+
+- category: Communities
+  title: Placeholder Community
+  url: https://example.com/community
+  description: A short description of the community and what it offers.
